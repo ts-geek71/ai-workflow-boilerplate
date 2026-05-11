@@ -1,0 +1,65 @@
+name: "CodeQL"
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  schedule:
+    - cron: "30 2 * * 1"  # Mondays 02:30 UTC
+
+jobs:
+  analyze:
+    name: Analyze (${{ matrix.language }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    permissions:
+      security-events: write
+      packages: read
+      actions: read
+      contents: read
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - language: javascript-typescript
+            build-mode: none
+          # add more if needed:
+          # - language: python
+          #   build-mode: none
+          # - language: java-kotlin
+          #   build-mode: autobuild
+          # - language: go
+          #   build-mode: autobuild
+          # - language: csharp
+          #   build-mode: autobuild
+          # - language: cpp
+          #   build-mode: manual
+          # - language: ruby
+          #   build-mode: none
+          # - language: swift
+          #   build-mode: manual
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: ${{ matrix.build-mode }}
+          queries: security-extended,security-and-quality
+
+      # Manual build only — replace with your build commands
+      - if: matrix.build-mode == 'manual'
+        shell: bash
+        run: |
+          echo "Add build commands here"
+          exit 1
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{ matrix.language }}"
