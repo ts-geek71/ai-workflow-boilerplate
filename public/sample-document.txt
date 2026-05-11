@@ -1,0 +1,42 @@
+AI Workflow Tutorial Guide
+
+Introduction to Agent Patterns
+
+This document covers three essential AI agent patterns used in modern AI applications:
+
+1. Sequential Workflow
+Sequential workflows involve multiple agents processing information in a linear chain. Each agent performs a specific task and passes its output to the next agent in the sequence. This pattern is ideal for:
+- Multi-step analysis tasks
+- Content creation pipelines
+- Research and summary workflows
+
+Example use case: A research agent gathers information, an analysis agent processes it, and a writing agent creates a final report.
+
+2. Supervisor Workflow
+In a supervisor pattern, a coordinator agent (supervisor) receives tasks and intelligently routes them to specialized worker agents based on the task requirements. Benefits include:
+- Efficient task distribution
+- Specialized agent expertise
+- Dynamic routing based on context
+
+Example use case: A customer service system where a supervisor routes technical questions to a technical agent and billing questions to a billing agent.
+
+3. RAG (Retrieval Augmented Generation)
+RAG combines the power of large language models with external knowledge sources. The system retrieves relevant context from documents and uses it to generate informed responses. Key advantages:
+- Access to current information
+- Domain-specific knowledge
+- Reduced hallucinations
+
+Example use case: Document Q&A systems where users can ask questions about uploaded manuals, policies, or research papers.
+
+Best Practices
+
+When implementing AI workflows:
+- Choose the right pattern for your use case
+- Clearly define each agent's role and expertise
+- Test with various inputs to ensure reliability
+- Monitor performance and adjust as needed
+- Consider cost and latency tradeoffs
+
+Conclusion
+
+Understanding these patterns enables you to build sophisticated AI applications that leverage multiple agents working together effectively.
